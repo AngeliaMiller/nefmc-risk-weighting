@@ -1,0 +1,113 @@
+---
+# General Settings
+format: html
+echo: false
+warning: false
+
+# Theme Settings
+theme: 
+  - flatly
+brand: 
+   palette:
+      dark-navy: "#104149"
+      dark-blue: "#1d365e"
+      teal: "#3e9eb6"
+      light-blue: "#92b3e4"
+      orange: "#ef953d"
+      gray: "#7f7f7f"
+    # background: light-blue
+    foreground: dark-navy
+    primary: dark-blue
+    secondary: teal
+    tertiary: gray
+    warning: orange
+  typography:
+    base: 
+      family: Urbanist
+    headings: 
+      family: Source Serif 4
+    link: 
+      color: teal
+barcolor: "#3e9eb6"
+barposition: top
+footer-left: "Made with [surveydown](https://surveydown.org)"
+footer-right: '[<i class="bi bi-github"></i> Source Code](https://github.com/surveydown-dev/template_default)'
+
+# Survey Settings 
+use-cookies: false
+auto-scroll: false
+rate-survey: false
+system-language: en
+highlight-unanswered: true
+highlight-color: blue
+capture-metadata: true
+all-questions-required: false
+---
+
+```{r}
+library(surveydown)
+library(tidyverse)
+```
+
+--- welcome
+# Risk Policy Weighting
+
+## Introduction
+
+The New England Fishery Management Council's Risk Policy utilizes data and Council member input to characterize the Council's risk tolerance for its managed resouces.
+
+In this exercise, Council members will be assigning weightings to each of the seven factors. Weightings signify the level of importance of a factor in the Council’s assessment of risk. For example, for the factor “Climate Vulnerability”, the weighting process is not asking whether a species is vulnerable to climate change impacts. Instead, the weighting process is asking how important the topic of ‘climate change impacts’ is to the Council’s risk tolerance for that species or stock.
+
+When assessing weightings for the factors, it may be helpful for you to think about the relative importance of the factors compared to one another. Some questions to help you think about weighting are:
+
+- Is there a factor that you feel should have the most influence on the Council’s decision making? 
+- Is there a factor that you feel is least important?
+- When you have made past decisions at the Council, what has been the primary driver of whether you were willing to accept an option of higher or lower risk? What had little influence on your decision?
+- When considering a factor’s level of importance, it may be helpful to consider whether it is already being accounted for in a stock assessment or existing management process. For example, are climate change impacts via environmental covariates already being accounted for in the stock assessment?
+
+## Instructions
+
+Complete the matrix below by assigning a weight for each factor. You can choose any whole number between 0 and 4:
+
+-   A weighting of 0 means you believe the factor is not important in determining the Council’s risk tolerance for that managed resource.
+-   A weighting of 4 means you believe the factor is critically important in determining the Council’s risk tolerance for that managed resource.
+
+*Do not use a weight of “Critically Important (4)” more than three times.*
+
+
+```{r weights}
+sd_question(
+  type  = "matrix",
+  id    = "weightings",
+  label = "",
+  row = c(
+    "Biomass/Stock" = "biomass", 
+    "Recruitment" = "recruitment", 
+    "Assessment Type & Uncertainty" = "assessment", 
+    "Climate Vulnerability" = "climate", 
+    "Fish Condition" = "fish_condition", 
+    "Recreational Fishery Characterization" = "recreational", 
+    "Commercial Fishery Characterization" = "commercial"
+  ),
+  option = c(
+    'Least Important (0)'    = '0',
+    'Slightly Important (1)' = '1',
+    'Important (2)'    = '2', 
+    "Highly Important (3)" = "3", 
+    "Critically Important (4)" = "4"
+  )
+)
+
+sd_nav()
+```
+
+--- end
+## End
+
+**Thank you for submitting your risk policy weights!**
+
+The average of the Council members’ weightings for each factor will be combined with each factor’s score from the PDT to assess a level of risk tolerance that the Council will apply in decision making.
+
+```{r close}
+sd_close(show_previous = TRUE)
+```
