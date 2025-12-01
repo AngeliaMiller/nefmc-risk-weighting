@@ -51,7 +51,19 @@ library(tidyverse)
 
 :::{.sd_page id=welcome}
 
-## Risk Policy Weighting
+## Risk Policy Weighting Form
+
+##### Weighting Year 
+Please enter the year in which this weighting exercise is taking place.
+```{r weight year}
+sd_question(
+  type = "textarea",
+  id = "weight_year", 
+  label = "", 
+  height = "5px",
+  placeholder = as.character(lubridate::year(lubridate::now()))
+)
+```
 
 ### Introduction
 
